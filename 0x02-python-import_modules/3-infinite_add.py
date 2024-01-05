@@ -5,4 +5,3 @@ if __name__ == "__main__":
     args = [int(arg) for arg in args]
     result = sum(args)
     print(result)
-    
