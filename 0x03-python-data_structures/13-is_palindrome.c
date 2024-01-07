@@ -4,7 +4,7 @@
  * reverse_list - reverses a linked list
  * @head: pointer to the head of the linked list
  */
-void reverse_list(listint_t **head)
+listint_t *reverse_list(listint_t **head)
 {
 	listint_t *prev = NULL, *current = *head, *next;
 
@@ -16,6 +16,7 @@ void reverse_list(listint_t **head)
 		current = next;
 	}
 	*head = prev;
+	return (prev);
 }
 
 /**
@@ -26,39 +27,40 @@ void reverse_list(listint_t **head)
  */
 int is_palindrome(listint_t **head)
 {
-	if (*head == NULL || (*head)->next == NULL)
+	if (*head != NULL && (*head)->next != NULL)
 	{
-		return (1);
-	}
-	listint_t *walker = *head, *runner = *head;
-	listint_t *prev_walker = *head, *second_half;
+		listint_t *walker = *head, *runner = *head;
+		listint_t *prev_walker = *head, *second_half;
+		int is_palindrome = 1;
 
-	while (runner != NULL && runner->next != NULL)
-	{
-		runner = runner->next->next;
-		prev_walker = walker;
-		walker = walker->next;
-	}
-
-	if (runner != NULL)
-	{
-		walker = walker->next;
-	}
-	second_half = walker;
-	prev_walker->next = NULL;
-	reverse_list(&second_half);
-
-	while (*head != NULL && second_half != NULL)
-	{
-		if ((*head)->n != second_half->n)
+		while (runner != NULL && runner->next != NULL)
 		{
-			return (0);
-			break;
+			runner = runner->next->next;
+			prev_walker = walker;
+			walker = walker->next;
 		}
-		*head = (*head)->next;
-		second_half = second_half->next;
+		if (runner != NULL)
+		{
+			walker = walker->next;
+		}
+		second_half = walker;
+		prev_walker->next = NULL;
+		reverse_list(&second_half);
+
+		while (*head != NULL && second_half != NULL)
+		{
+			if ((*head)->n != second_half->n)
+			{
+				is_palindrome = 0;
+				break;
+			}
+			*head = (*head)->next;
+			second_half = second_half->next;
+		}
+		second_half = reverse_list(&second_half);
+		prev_walker->next = second_half;
+
+		return is_palindrome;
 	}
-	reverse_list(&second_half);
-	prev_walker->next = second_half;
-	return (1);
+	return (0);
 }
