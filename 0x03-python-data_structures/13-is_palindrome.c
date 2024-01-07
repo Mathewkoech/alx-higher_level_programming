@@ -3,7 +3,8 @@
 /**
  * reverse_list - reverses a linked list
  * @head: pointer to the head of the linked list
- */
+ * Return: reversed list
+*/
 listint_t *reverse_list(listint_t **head)
 {
 	listint_t *prev = NULL, *current = *head, *next;
@@ -60,7 +61,7 @@ int is_palindrome(listint_t **head)
 		second_half = reverse_list(&second_half);
 		prev_walker->next = second_half;
 
-		return is_palindrome;
+		return (is_palindrome);
 	}
 	return (0);
 }
