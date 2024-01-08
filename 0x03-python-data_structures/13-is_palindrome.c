@@ -1,23 +1,24 @@
 #include "lists.h"
-#include <stddef.h>
-/**
- * reverse_list - reverses a linked list
- * @head: pointer to the head of the linked list
- * Return: reversed list
-*/
-listint_t *reverse_list(listint_t **head)
-{
-	listint_t *prev = NULL, *current = *head, *next;
+#include <stdlib.h>
+#include <stdio.h>
 
-	while (current != NULL)
-	{
-		next = current->next;
-		current->next = prev;
-		prev = current;
-		current = next;
-	}
-	*head = prev;
-	return (prev);
+/**
+*add_nodeint - adds a new node at the beginning of a listint_t list
+*@head: head of listint_t
+*@n: int to add in listint_t list
+*Return: address of the new element, or NULL if it failed
+*/
+listint_t *add_nodeint(listint_t **head, const int n)
+{
+	listint_t *new;
+
+	new = malloc(sizeof(listint_t));
+	if (new == NULL)
+		return (NULL);
+	new->n = n;
+	new->next = *head;
+	*head = new;
+	return (new);
 }
 
 /**
@@ -28,39 +29,27 @@ listint_t *reverse_list(listint_t **head)
  */
 int is_palindrome(listint_t **head)
 {
-	if (*head != NULL && (*head)->next != NULL)
-	{
-		listint_t *walker = *head, *runner = *head;
-		listint_t *prev_walker = *head, *second_half;
+	listint_t *runner = *head;
+	listint_t *walker = NULL, *prev_walker = NULL;
 
-		while (runner != NULL && runner->next != NULL)
-		{
-			runner = runner->next->next;
-			prev_walker = walker;
-			walker = walker->next;
-		}
-		if (runner != NULL)
-		{
-			walker = walker->next;
-		}
-		second_half = walker;
-		prev_walker->next = NULL;
-		reverse_list(&second_half);
-
-		while (*head != NULL && second_half != NULL)
-		{
-			if ((*head)->n != second_half->n)
-			{
-				return (0);
-				break;
-			}
-			*head = (*head)->next;
-			second_half = second_half->next;
-		}
-		second_half = reverse_list(&second_half);
-		prev_walker->next = second_half;
-
+	if (*head == NULL || runner->next == NULL)
 		return (1);
+	while (runner != NULL)
+	{
+		add_nodeint(&walker, runner->n);
+		runner = runner->next;
 	}
-	return (0);
+	prev_walker = walker;
+	while (*head != NULL)
+	{
+		if ((*head)->n != prev_walker->n)
+		{
+			free_listint(walker);
+			return (0);
+		}
+		*head = (*head)->next;
+		prev_walker = prev_walker->next;
+	}
+	free_listint(walker);
+	return (1);
 }
