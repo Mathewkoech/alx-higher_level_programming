@@ -32,7 +32,6 @@ int is_palindrome(listint_t **head)
 	{
 		listint_t *walker = *head, *runner = *head;
 		listint_t *prev_walker = *head, *second_half;
-		int is_palindrome = 1;
 
 		while (runner != NULL && runner->next != NULL)
 		{
@@ -52,7 +51,7 @@ int is_palindrome(listint_t **head)
 		{
 			if ((*head)->n != second_half->n)
 			{
-				is_palindrome = 0;
+				return (0);
 				break;
 			}
 			*head = (*head)->next;
@@ -61,7 +60,7 @@ int is_palindrome(listint_t **head)
 		second_half = reverse_list(&second_half);
 		prev_walker->next = second_half;
 
-		return (is_palindrome);
+		return (1);
 	}
 	return (0);
 }
