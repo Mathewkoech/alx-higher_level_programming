@@ -5,7 +5,6 @@
 class Rectangle:
     """Empty class representing a rectangle."""
     number_of_instances = 0
-
     print_symbol = "#"
 
 
@@ -57,7 +56,7 @@ class Rectangle:
 
         rect_str = ""
         for _ in range(self.__height):
-            rect_str += str(self.print_symbol) * self.__width + "\n"
+            rect_str += "#" * self.__width + "\n"
         return rect_str[:-1]
 
     def __repr__(self):
