@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-
+"""rectangle module"""
 
 class Rectangle:
     """Empty class representing a rectangle."""
