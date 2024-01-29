@@ -8,7 +8,6 @@ class Rectangle:
 
     print_symbol = "#"
 
-
     def __init__(self, width=0, height=0):
         """Initialize the rectangle with width and height."""
         self.width = width
@@ -67,3 +66,20 @@ class Rectangle:
     def __del__(self):
         print("Bye rectangle...")
         Rectangle.number_of_instances -= 1
+
+    @staticmethod
+    def bigger_or_equal(rect_1, rect_2):
+        """
+        Compares two rectangles
+        Args:
+            rect_1: rectangle 1
+            rect_2: reactangle 2
+        Returns: bigger rectangle or rect_1 if both equal
+        """
+        if not isinstance(rect_1, Rectangle):
+            raise TypeError("rect_1 must be an instance of Rectangle")
+        if not isinstance(rect_2, Rectangle):
+            raise TypeError("rect_2 must be an instance of Rectangle")
+        if rect_2.area() > rect_1.area():
+            return rect_2
+        return rect_1
