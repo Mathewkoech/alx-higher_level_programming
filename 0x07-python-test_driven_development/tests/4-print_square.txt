@@ -1,0 +1,38 @@
+#Test case for square module
+
+import module
+       >>> print_square = __import__('4-print_square').print_square
+
+Test normal print 0:
+    >>> print_square(0)
+
+Test normal print 1:
+    >>> print_square(1)
+    #
+
+Test normal print 7:
+    >>> print_square(7)
+    #######
+    #######
+    #######
+    #######
+    #######
+    #######
+    #######
+
+Test for missing args
+     >>> print_square()
+     Traceback (most recent call last):
+     ...
+     TypeError: print_square() missing 1 required positional argument: 'size'
+
+Test for float
+     >>> print_square(7.2)
+     Traceback (most recent call last):
+     ...
+     TypeError: size must be an integer
+
+Test for negative
+     >>> print_square(-2)
+     Traceback (most recent call last):
+     ValueError: size must be >= 0

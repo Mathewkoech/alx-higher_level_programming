@@ -1,0 +1,29 @@
+#Test case for text indentation
+0;276;0cimport module
+       >>> text_indentation = __import__('5-text_indentation').text_indentation
+
+Test for ?
+     >>> text_indentation("men?")
+     men?
+     <BLANKLINE>
+
+Test for int type
+     >>> text_indentation(98)
+     Traceback (most recent call last):
+     TypeError: text must be a string
+
+Test for string with ", and ."
+     >>> text_indentation("men.")
+     men.
+     <BLANKLINE>
+
+Test for None arg
+    >>> text_indentation(None)
+    Traceback (most recent call last):
+    ...
+    TypeError: text must be a string
+
+Test for spaces at start
+     >>> text_indentation("   See here.")
+     See here.
+     <BLANKLINE>
