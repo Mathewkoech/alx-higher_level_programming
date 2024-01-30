@@ -1,0 +1,21 @@
+Example test cases:
+	>>> add_integer(1, 2)
+	3
+Test with one negative
+     >>> add_integer(100, -2)
+     98
+
+Test one int argument and check default second:
+
+     >>> add_integer(0)
+     98
+
+Test one float:
+
+     >>> add_integer(123.9)
+     221
+
+Test one negative float:
+
+     >>> add_integer(-95.5)
+     3
