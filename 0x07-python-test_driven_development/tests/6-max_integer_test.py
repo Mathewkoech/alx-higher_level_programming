@@ -34,6 +34,9 @@ class TestMaxInteger(unittest.TestCase):
         floats = [3.9, 4.9, 0.6]
         self.assertEqual(max_integer(floats), 4.9)
 
+    def test_empty_list(self):
+        self.assertIsNone(max_integer([]), None)
+
 
 if __name__ == "__main__":
     unittest.main()
