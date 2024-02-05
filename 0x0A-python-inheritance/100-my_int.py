@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """method for MyInt class"""
 
+
 class MyInt(int):
     """rebel version of int"""
     def __new__(cls, *args, **kwargs):
