@@ -1,0 +1,29 @@
+1My_list module
+
+Import function from module:
+    >>> MyList = __import__('1-my_list').MyList
+
+Test for empty list:
+    >>> li = MyList()
+    >>> li.print_sorted()
+    []
+
+Test for unsorted list:
+     >>> li = MyList([7, 11, 2])
+     >>> li.print_sorted()
+     [2, 7, 11]
+
+Test if print_sorted is instance method:
+     >>> type(MyList.__dict__['print_sorted'])
+     <class 'function'>
+
+Test for class type:
+     >>> li = MyList()
+     >>> type(li) == MyList
+     True
+
+
+Test for Instance:
+     >>> li = MyList()
+     >>> isinstance(li, list)
+     True
