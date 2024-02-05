@@ -1,0 +1,38 @@
+The ``7-base_geometry`` module
+
+Import function from module:
+       >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+
+Correct Class Type test:
+	>>> bg = BaseGeometry()
+	>>> type(bg) == BaseGeometry
+	True
+
+Test area if an instance method:
+     >>> type(BaseGeometry.__dict__['area'])
+     <class 'function'>
+
+Test area method called with class with no args:
+     >>> bg.__class__.area()
+     Traceback (most recent call last):
+     TypeError: area() missing 1 required positional argument: 'self'
+
+Test with one arg::
+     >>> bg.area(29)
+     Traceback (most recent call last):
+     TypeError: area() takes 1 positional argument but 2 were given
+
+Test for area method:
+     >>> bg.area()
+     Traceback (most recent call last):
+     Exception: area() is not implemented
+
+Test for string value with integer_validator:
+     >>> bg.integer_validator("Harry", "styles")
+     Traceback (most recent call last):
+     TypeError: Harry must be an integer
+
+Test for with list value:
+     >>> bg.integer_validator("harry", [7])
+     Traceback (most recent call last):
+     TypeError: harry must be an integer
