@@ -20,10 +20,9 @@ class Student:
                     return self.__dict__
         except Exception:
             return self.__dict__
-        new_dict= dict()
+        new_dict = dict()
 
         for key, value in self.__dict__.items():
             if key in attrs:
                 new_dict[key] = value
                 return new_dict
-
