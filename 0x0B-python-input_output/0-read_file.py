@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-0;276;0c"""read_file method"""
+"""read_file method"""
 
 
 def read_file(filename=""):
