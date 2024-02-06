@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-"""read_file method"""
+0;276;0c"""read_file method"""
 
 
 def read_file(filename=""):
@@ -10,6 +10,6 @@ def read_file(filename=""):
     Args:
         filename (str): The name of the text file.
     """
-    with open(filename, 'r', encoding = 'utf-8')as file:
-        content= file.read()
+    with open(filename, 'r', encoding='utf-8')as file:
+        content = file.read()
         print(content, end="")
