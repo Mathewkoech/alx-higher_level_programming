@@ -27,7 +27,6 @@ def print_metrics():
             print("{:s}: {:d}".format(key, value))
 
 
-
 try:
     for line in stdin:
         # Split the line into words
