@@ -1,5 +1,5 @@
 *~
-0;276;0c0-main.py
+0-main.py
 1-main.py
 2-main.py
 3-main.py
@@ -12,3 +12,4 @@ my_fake.json
 8-main.py
 8-main_2.py
 my_list.json
+9-main.py
