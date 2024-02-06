@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-11;rgb:0000/0000/0000"""Module for Student class"""
+"""Module for Student class"""
 
 
 class Student:
