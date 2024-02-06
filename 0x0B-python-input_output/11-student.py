@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Module for Student class"""
+11;rgb:0000/0000/0000"""Module for Student class"""
 
 
 class Student:
@@ -20,7 +20,7 @@ class Student:
                     return self.__dict__
         except Exception:
             return self.__dict__
-        new_dict= dict()
+        new_dict = dict()
 
         for key, value in self.__dict__.items():
             if key in attrs:
@@ -29,6 +29,6 @@ class Student:
 
     def reload_from_json(self, json):
         """replaces all attributes of the Student instance"""
-        for key,value in json.items():
+        for key, value in json.items():
             if hasattr(self, key):
                 setattr(self, key, value)
