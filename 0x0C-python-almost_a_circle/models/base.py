@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
-"""moodule for Base class"""
-
+"""module for Base class"""
 
 class Base:
     """Base class for managing id attribute"""
