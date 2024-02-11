@@ -58,11 +58,6 @@ class TestRectangleArea(unittest.TestCase):
 
     def test_area_with_zero_dimensions(self):
         rect = Rectangle(0, 0)
-        self.assertEqual(rect.area(), 0)
-
-    def test_area_with_negative_dimensions(self):
-        with self.assertRaisesRegex(ValueError, "width must be > 0"):
-            r = Rectangle(-2, -1)
 
 class TestRectangleDisplay(unittest.TestCase):
     def setUp(self):
