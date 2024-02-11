@@ -61,11 +61,8 @@ class TestRectangleArea(unittest.TestCase):
         self.assertEqual(rect.area(), 0)
 
     def test_area_with_negative_dimensions(self):
-        r = Rectangle(-2, -1)
-        # The area of a rectangle with negative dimensions should still be positive
-        expected_area = abs(-2) * abs(-1)
-        self.assertEqual(r.area(), expected_area)
-
+        with self.assertRaisesRegex(ValueError, "width must be > 0"):
+            r = Rectangle(-2, -1)
 
 class TestRectangleDisplay(unittest.TestCase):
     def setUp(self):
