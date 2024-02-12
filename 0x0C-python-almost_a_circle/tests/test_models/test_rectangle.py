@@ -24,7 +24,7 @@ class Test_rectangle_validation(unittest.TestCase):
     def test_height_validation(self):
         """test height validation"""
         with self.assertRaises(TypeError) as context:
-            r = Rectangle(2,"num")
+            r = Rectangle(2, "num")
         self.assertEqual(str(context.exception), "height must be an integer")
 
         with self.assertRaises(ValueError) as context:
@@ -51,6 +51,7 @@ class Test_rectangle_validation(unittest.TestCase):
             r = Rectangle(2, 4, 2, -2)
         self.assertEqual(str(context.exception), "y must be >= 0")
 
+
 class TestRectangleArea(unittest.TestCase):
     def test_area_with_positive_dimensions(self):
         r = Rectangle(4, 5)
@@ -60,6 +61,7 @@ class TestRectangleArea(unittest.TestCase):
         r = Rectangle(2, 10, 1, 1, 1)
         with self.assertRaises(TypeError):
             r.area(1)
+
 
 class TestRectangleDisplay(unittest.TestCase):
     def setUp(self):
@@ -84,6 +86,7 @@ class TestRectangleDisplay(unittest.TestCase):
         printed_output = sys.stdout.getvalue()
         expected_output = "##\n##\n##\n"
         self.assertEqual(printed_output, expected_output)
+
 
 class TestRectangleStrMethod(unittest.TestCase):
 
@@ -142,13 +145,13 @@ class TestRectangleUpdateMethod(unittest.TestCase):
         self.assertEqual(r.x, 5)
         self.assertEqual(r.y, 6)
 
+
 class test_to_dictionary(unittest.TestCase):
     """Unittests for testing to_dictionary method of the Rectangle class."""
     def test_rectangle_to_dictionary(self):
         r = Rectangle(1, 2, 3, 4, 5)
         expected_result = {'id': 5, 'width': 1, 'height': 2, 'x': 3, 'y': 4}
         self.assertEqual(r.to_dictionary(), expected_result)
-
 
 
 if __name__ == "__main__":

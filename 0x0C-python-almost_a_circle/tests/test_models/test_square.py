@@ -2,11 +2,11 @@
 """Defines unittests for models/square.py"""
 
 import sys
-from io import StringIO
-sys.stdout = StringIO()
 import unittest
 from models.base import Base
 from models.square import Square
+from io import StringIO
+sys.stdout = StringIO()
 
 
 class Test_square_validation(unittest.TestCase):
@@ -14,8 +14,9 @@ class Test_square_validation(unittest.TestCase):
     def test_width_validation(self):
         """test width validation"""
         with self.assertRaises(TypeError) as context:
-            s= Square("num", 2)
-            self.assertEqual(str(context.exception), "width must be an integer")
+            s = Square("num", 2)
+            self.assertEqual(str(context.exception),
+                             "width must be an integer")
 
         with self.assertRaises(ValueError) as context:
             s = Square(-2, 7)
@@ -41,10 +42,12 @@ class Test_square_validation(unittest.TestCase):
             s = Square(4, 2, -2)
         self.assertEqual(str(context.exception), "y must be >= 0")
 
+
 class TestSquareArea(unittest.TestCase):
     def test_area_with_positive_dimensions(self):
         s = Square(40, 5, 6)
         self.assertEqual(s.area(), 1600)
+
 
 class TestSquareDisplay(unittest.TestCase):
     def setUp(self):
@@ -77,6 +80,7 @@ class TestSquareDisplay(unittest.TestCase):
         expected_output = '  ##\n  ##\n'
         self.assertEqual(printed_output, expected_output)
 
+
 class TestSquareStrMethod(unittest.TestCase):
 
     def test_str_method(self):
@@ -106,6 +110,7 @@ class TestSquareUpdateMethod_args(unittest.TestCase):
         s = Square(11, 9, 12, 13)
         with self.assertRaisesRegex(ValueError, "width must be > 0"):
             s.update(28, -3)
+
 
 class TestSquare_update_kwargs(unittest.TestCase):
     """Unittests for testing update kwargs method of Square class."""
@@ -200,7 +205,6 @@ class test_to_dictionary(unittest.TestCase):
         s = Square(1, 2, 3, 4)
         expected_result = {'id': 4, 'size': 1, 'x': 2, 'y': 3}
         self.assertEqual(s.to_dictionary(), expected_result)
-
 
 
 if __name__ == "__main__":
