@@ -1,9 +1,9 @@
 #!/usr/bin/python3
+"""module for Base class"""
+
 import json
 import csv
 import turtle
-
-"""module for Base class"""
 
 
 class Base:
