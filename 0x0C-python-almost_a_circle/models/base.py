@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-"""module for Base class"""
+"""Import packages"""
 import json
 import csv
 import turtle
@@ -154,4 +154,3 @@ class Base:
             turt.hideturtle()
 
         turtle.exitonclick()
-    
