@@ -6,7 +6,19 @@ from models.base import Base
 class Rectangle(Base):
     """Rectangle class that inherits Base class"""
     def __init__(self, width, height, x=0, y=0, id=None):
-        """Constructor class"""
+        """Constructor class
+        Args:
+            width (int): The width.
+            height (int): The height .
+            x (int): The x coordinate.
+            y (int): The y coordinate.
+            id (int): The new Rectangle identity.
+        Raises:
+            TypeError: If either width or height is not an int.
+            ValueError: If either  width or height <= 0.
+            TypeError: If either  x or y is not an int.
+            ValueError: If either x or y < 0.
+        """
         if not isinstance(width, int):
             raise TypeError("width must be an integer")
         if not width >= 0:
@@ -39,7 +51,13 @@ class Rectangle(Base):
 
     @width.setter
     def width(self, value):
-        """Setter method for width"""
+        """Setter method for width
+        Args:
+            width: parameter
+        Raises:
+            TypeError: if width not int
+            ValueError: if width less than 0
+        """
         if not isinstance(value, int):
             raise TypeError("width must be an integer")
         if value <= 0:
@@ -54,7 +72,13 @@ class Rectangle(Base):
 
     @height.setter
     def height(self, value):
-        """Setter method for height"""
+        """Setter method for height
+        Args:
+            height: parameter
+        Raises:
+            TypeError: if height not int
+            ValueError: if height less than 0
+        """
         if not isinstance(value, int):
             raise TypeError("height must be an integer")
         if value <= 0:
@@ -69,7 +93,14 @@ class Rectangle(Base):
 
     @x.setter
     def x(self, value):
-        """Setter method for x"""
+        """Setter method for x
+        Args:
+            x: parameter
+        Raises:
+            TypeError: if x not int
+            ValueError: if x less than 0
+        """
+
         if not isinstance(value, int):
             raise TypeError("x must be an integer")
         if value < 0:
@@ -84,7 +115,13 @@ class Rectangle(Base):
 
     @y.setter
     def y(self, value):
-        """Setter method for y"""
+        """Setter method for y
+        Args:
+            y: parameter
+        Raises:
+            TypeError: if y not int
+            ValueError: if y less than 0
+        """
         if not isinstance(value, int):
             raise TypeError("y must be an integer")
         if value < 0:

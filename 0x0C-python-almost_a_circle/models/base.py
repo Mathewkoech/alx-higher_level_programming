@@ -1,17 +1,23 @@
 #!/usr/bin/python3
 
-"""Import packages"""
+"""Defines base class"""
 import json
 import csv
 import turtle
 
 
 class Base:
-    """Base class for managing id attribute"""
+    """Base class for managing id attribute
+    Args:
+    __nb__objects: private attribute
+    """
     __nb_objects = 0
 
     def __init__(self, id=None):
-        """class constructor"""
+        """class constructor
+         Args:
+           id(int): integer value to manage id in this project
+        """
 
         if id is not None:
             self.id = id
@@ -21,7 +27,10 @@ class Base:
 
     @staticmethod
     def to_json_string(list_dictionaries):
-        """returns the JSON string representation of list_dictionaries"""
+        """returns the JSON string representation of list_dictionaries
+        Args:
+            list_dictionaries (list): A list of dictionaries.
+        """
         if list_dictionaries is None or []:
             return "[]"
         return json.dumps(list_dictionaries)
@@ -29,7 +38,10 @@ class Base:
     @classmethod
     def save_to_file(cls, list_objs):
         """writes the JSON string representation of list_objs
-        to file/serialize"""
+        to file/serialize
+        Args:
+            list_objs (list): A list of inherited Base instances.
+        """
         filename = cls.__name__ + ".json"
         with open(filename, "w") as jsonfile:
             if list_objs is None:
@@ -40,14 +52,23 @@ class Base:
 
     @staticmethod
     def from_json_string(json_string):
-        """returns the list of the JSON str rep json_string/ deserialise"""
+        """returns the list of the JSON str rep json_string/ deserialise
+        Args:
+            json_string (str): A JSON str representation of a list of dicts.
+        Returns:
+            If json_string is None or empty - an empty list.
+            Otherwise - the Python list represented by json_string.
+        """
         if json_string is None or json_string == "[]":
             return []
         return json.loads(json_string)
 
     @classmethod
     def create(cls, **dictionary):
-        """returns an instance with all attributes already set"""
+        """returns an instance with all attributes already set
+        Args:
+            **dictionary (dict): Key/value pairs of attributes to initialize.
+        """
         if cls.__name__ == "Rectangle":
             dummy = cls(1, 1)
         elif cls.__name__ == "Square":
@@ -59,7 +80,11 @@ class Base:
 
     @classmethod
     def load_from_file(cls):
-        """returns a list of instances"""
+        """returns a list of instances from json strings file
+        Returns:
+            If the file does not exist - an empty list.
+            Otherwise - a list of instantiated classes.
+        """
         filename = cls.__name__ + ".json"
         try:
             with open(filename, 'r') as jsonfile:

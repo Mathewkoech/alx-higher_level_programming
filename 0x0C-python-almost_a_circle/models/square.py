@@ -6,7 +6,19 @@ from models.rectangle import Rectangle
 class Square(Rectangle):
     """Square class that inherits from Rectangle."""
     def __init__(self, size, x=0, y=0, id=None):
-        """Constructor method for Square."""
+        """Constructor
+        Args:
+        width (int): The width.
+        height (int): The height .
+        x (int): The x coordinate.
+        y (int): The y coordinate.
+        id (int): The new Rectangle identity.
+        Raises:
+        TypeError: If either width or height is not an int.
+        ValueError: If either  width or height <= 0.
+        TypeError: If either  x or y is not an int.
+        ValueError: If either x or y < 0.
+        """
         super().__init__(size, size, x, y, id)
 
     @property
