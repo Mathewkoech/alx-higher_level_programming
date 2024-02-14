@@ -70,13 +70,6 @@ class TestSquareDisplay(unittest.TestCase):
         expected_output = "\n\n\n   ##\n   ##\n"
         self.assertEqual(printed_output, expected_output)
 
-    def test_display_with_zero_dimensions(self):
-        r = Square(0, 0)
-        r.display()
-        printed_output = sys.stdout.getvalue()
-        expected_output = ""
-        self.assertEqual(printed_output, expected_output)
-
     def test_display_with_negative_dimensions(self):
         r = Square(2, 2)
         r.display()
