@@ -11,6 +11,7 @@ from models.square import Square
 
 
 class TestBase_instance(unittest.TestCase):
+    """unittest for instantiation"""
 
     def test_init_with_id(self):
         """
@@ -39,6 +40,7 @@ class TestBase_instance(unittest.TestCase):
 
 
 class TestBase_to_jsonstring(unittest.TestCase):
+    """unittest for serializing"""
 
     def test_to_json_string_none(self):
         """

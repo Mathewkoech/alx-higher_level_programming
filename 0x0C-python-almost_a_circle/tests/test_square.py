@@ -44,12 +44,16 @@ class Test_square_validation(unittest.TestCase):
 
 
 class TestSquareArea(unittest.TestCase):
+    """unittest for area calculation"""
+
     def test_area_with_positive_dimensions(self):
         s = Square(40, 5, 6)
         self.assertEqual(s.area(), 1600)
 
 
 class TestSquareDisplay(unittest.TestCase):
+    """unittest for display # characters"""
+
     def setUp(self):
         # Redirect stdout to capture print statements
         self.saved_stdout = sys.stdout
@@ -82,6 +86,7 @@ class TestSquareDisplay(unittest.TestCase):
 
 
 class TestSquareStrMethod(unittest.TestCase):
+    """unittest for string representation"""
 
     def test_str_method(self):
         s = Square(1, 2, 3, 4)
@@ -90,6 +95,7 @@ class TestSquareStrMethod(unittest.TestCase):
 
 
 class TestSquareUpdateMethod_args(unittest.TestCase):
+    """unittest for updating square dimensions"""
 
     def test_update_zero_args(self):
         s = Square(5, 5, 5, 5)

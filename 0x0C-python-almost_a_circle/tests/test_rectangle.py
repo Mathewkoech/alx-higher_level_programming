@@ -53,6 +53,8 @@ class Test_rectangle_validation(unittest.TestCase):
 
 
 class TestRectangleArea(unittest.TestCase):
+    """unittest for area calculation"""
+
     def test_area_with_positive_dimensions(self):
         r = Rectangle(4, 5)
         self.assertEqual(r.area(), 20)
@@ -64,6 +66,8 @@ class TestRectangleArea(unittest.TestCase):
 
 
 class TestRectangleDisplay(unittest.TestCase):
+    """unittest for display # characters"""
+
     def setUp(self):
         # Redirect stdout to capture print statements
         self.saved_stdout = sys.stdout
@@ -89,6 +93,7 @@ class TestRectangleDisplay(unittest.TestCase):
 
 
 class TestRectangleStrMethod(unittest.TestCase):
+    """unittest for string representation"""
 
     def test_str_method(self):
         r = Rectangle(1, 2, 3, 4, 5)
@@ -97,6 +102,8 @@ class TestRectangleStrMethod(unittest.TestCase):
 
 
 class TestRectangleUpdateMethod(unittest.TestCase):
+    """unittest for updating rect dimensions"""
+
     def test_update_args_y_negative(self):
         r = Rectangle(10, 10, 10, 10, 10)
         with self.assertRaisesRegex(ValueError, "y must be >= 0"):
