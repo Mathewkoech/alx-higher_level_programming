@@ -7,6 +7,7 @@ from models.base import Base
 from models.square import Square
 import io
 
+
 class Test_square_validation(unittest.TestCase):
     """testing square validation"""
     def test_width_validation(self):

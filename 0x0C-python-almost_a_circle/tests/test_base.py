@@ -20,7 +20,7 @@ class TestBase_instance(unittest.TestCase):
         base = Base(10)
         self.assertEqual(base.id, 10)
 
-    def test_None_id(self):
+    def test_none_id(self):
         b1 = Base(None)
         b2 = Base(None)
         self.assertEqual(b1.id, b2.id - 1)
