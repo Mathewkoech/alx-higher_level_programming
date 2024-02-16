@@ -38,23 +38,18 @@ class TestBase_instance(unittest.TestCase):
         base2 = Base()
         self.assertEqual(base1.id + 1, base2.id)
 
+    def test_dict_id(self):
+        self.assertEqual({"a": 1, "b": 2}, Base({"a": 1, "b": 2}).id)
+
 
 class TestBase_to_jsonstring(unittest.TestCase):
     """unittest for serializing"""
 
-    def test_to_json_string_none(self):
-        """
-        Test to_json_string with None input.
-        """
-        json_string = Base.to_json_string(None)
-        self.assertEqual(json_string, "[]")
-
     def test_to_json_string_empty_list(self):
-        """
-        Test to_json_string with empty list.
-        """
-        json_string = Base.to_json_string([])
-        self.assertEqual(json_string, "[]")
+        self.assertEqual("[]", Base.to_json_string([]))
+
+    def test_to_json_string_none(self):
+        self.assertEqual("[]", Base.to_json_string(None))
 
     def test_to_json_string_with_data(self):
         """
@@ -127,6 +122,12 @@ class Test_Base_from_json_string(unittest.TestCase):
     def test_from_json_string_empty_list(self):
         self.assertEqual([], Base.from_json_string("[]"))
 
+    def test_from_json_string_one_square(self):
+        list_input = [{"id": 19, "size": 10, "height": 4}]
+        json_list_input = Square.to_json_string(list_input)
+        list_output = Square.from_json_string(json_list_input)
+        self.assertEqual(list_input, list_output)
+
     def test_from_json_string_no_args(self):
         with self.assertRaises(TypeError):
             Base.from_json_string()
@@ -136,6 +137,22 @@ class Test_Base_from_json_string(unittest.TestCase):
         json_input = Rectangle.to_json_string(input)
         list_expected_output = Rectangle.from_json_string(json_input)
         self.assertEqual(list, type(list_expected_output))
+
+
+class TestBase_create(unittest.TestCase):
+    """Unittests for testing create method of Base class."""
+
+    def test_create_rectangle(self):
+        r1 = Rectangle(3, 5, 1, 2, 7)
+        r1_dictionary = r1.to_dictionary()
+        r2 = Rectangle.create(**r1_dictionary)
+        self.assertEqual("[Rectangle] (7) 1/2 - 3/5", str(r1))
+
+    def test_create_square(self):
+        s1 = Square(2, 6, 1, 9)
+        s1_dictionary = s1.to_dictionary()
+        s2 = Square.create(**s1_dictionary)
+        self.assertEqual("[Square] (9) 6/1 - 2", str(s2))
 
 
 class TestBase_save_to_file_csv(unittest.TestCase):
@@ -190,12 +207,12 @@ class TestBase_load_from_file_csv(unittest.TestCase):
             pass
 
     def test_load_from_file_csv_no_file(self):
-        output = Square.load_from_file_csv()
-        self.assertEqual([], output)
+        expected_output = Square.load_from_file_csv()
+        self.assertEqual([], expected_output)
 
-    def test_load_from_file_csv_more_args(self):
+    def test_load_from_file_csv_more_than_one_arg(self):
         with self.assertRaises(TypeError):
-            Base.load_from_file_csv([], 11)
+            Base.load_from_file_csv([], 1)
 
 
 if __name__ == "__main__":

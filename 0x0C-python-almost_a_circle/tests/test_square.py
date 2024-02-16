@@ -5,9 +5,7 @@ import sys
 import unittest
 from models.base import Base
 from models.square import Square
-from io import StringIO
-sys.stdout = StringIO()
-
+import io
 
 class Test_square_validation(unittest.TestCase):
     """testing square validation"""
@@ -51,8 +49,9 @@ class TestSquareArea(unittest.TestCase):
         self.assertEqual(s.area(), 1600)
 
 
+"""
 class TestSquareDisplay(unittest.TestCase):
-    """unittest for display # characters"""
+    unittest for display # characters
 
     def setUp(self):
         # Redirect stdout to capture print statements
@@ -76,6 +75,85 @@ class TestSquareDisplay(unittest.TestCase):
         printed_output = sys.stdout.getvalue()
         expected_output = '  ##\n  ##\n'
         self.assertEqual(printed_output, expected_output)
+"""
+
+
+class TestSquare_stdout(unittest.TestCase):
+    """Unittests for testing __str__ and display methods of Square class."""
+
+    @staticmethod
+    def capture_stdout(sq, method):
+        """Captures and returns text printed to stdout.
+
+        Args:
+            sq (Square): The Square ot print to stdout.
+            method (str): The method to run on sq.
+        Returns:
+            The text printed to stdout by calling method on sq.
+        """
+        capture = io.StringIO()
+        sys.stdout = capture
+        if method == "print":
+            print(sq)
+        else:
+            sq.display()
+        sys.stdout = sys.__stdout__
+        return capture
+
+    def test_str_method_print_size(self):
+        s = Square(4)
+        capture = TestSquare_stdout.capture_stdout(s, "print")
+        correct = "[Square] ({}) 0/0 - 4\n".format(s.id)
+        self.assertEqual(correct, capture.getvalue())
+
+    def test_str_method_size_x(self):
+        s = Square(5, 5)
+        correct = "[Square] ({}) 5/0 - 5".format(s.id)
+        self.assertEqual(correct, s.__str__())
+
+    def test_str_method_size_x_y(self):
+        s = Square(7, 4, 22)
+        correct = "[Square] ({}) 4/22 - 7".format(s.id)
+        self.assertEqual(correct, str(s))
+
+    def test_str_method_size_x_y_id(self):
+        s = Square(2, 88, 4, 19)
+        self.assertEqual("[Square] (19) 88/4 - 2", str(s))
+
+    def test_str_method_changed_attributes(self):
+        s = Square(7, 0, 0, [4])
+        s.size = 15
+        s.x = 8
+        s.y = 10
+        self.assertEqual("[Square] ([4]) 8/10 - 15", str(s))
+
+    def test_str_method_one_arg(self):
+        s = Square(1, 2, 3, 4)
+        with self.assertRaises(TypeError):
+            s.__str__(1)
+
+    # Test display method
+    def test_display_size(self):
+        s = Square(2, 0, 0, 9)
+        capture = TestSquare_stdout.capture_stdout(s, "display")
+        self.assertEqual("##\n##\n", capture.getvalue())
+
+    def test_display_size_x(self):
+        s = Square(3, 1, 0, 18)
+        capture = TestSquare_stdout.capture_stdout(s, "display")
+        self.assertEqual(" ###\n ###\n ###\n", capture.getvalue())
+
+    def test_display_size_y(self):
+        s = Square(4, 0, 1, 9)
+        capture = TestSquare_stdout.capture_stdout(s, "display")
+        display = "\n####\n####\n####\n####\n"
+        self.assertEqual(display, capture.getvalue())
+
+    def test_display_size_x_y(self):
+        s = Square(2, 3, 2, 1)
+        capture = TestSquare_stdout.capture_stdout(s, "display")
+        display = "\n\n   ##\n   ##\n"
+        self.assertEqual(display, capture.getvalue())
 
 
 class TestSquareStrMethod(unittest.TestCase):
