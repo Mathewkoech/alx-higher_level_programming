@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """Defines test cases for base class"""
+
 import sys
 import os
 import json

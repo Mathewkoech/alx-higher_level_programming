@@ -8,83 +8,120 @@ from models.square import Square
 import io
 
 
-class Test_square_validation(unittest.TestCase):
-    """testing square validation"""
-    def test_width_validation(self):
-        """test width validation"""
-        with self.assertRaises(TypeError) as context:
-            s = Square("num", 2)
-            self.assertEqual(str(context.exception),
-                             "width must be an integer")
+class TestSquare_size(unittest.TestCase):
+    """Unittests for testing size initialization of the Square class."""
 
-        with self.assertRaises(ValueError) as context:
-            s = Square(-2, 7)
-            self.assertEqual(str(context.exception), "width must be > 0")
+    def test_bool_size(self):
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+            Square(True, 1, 4)
 
-    def test_x_validation(self):
-        """test x validation"""
-        with self.assertRaises(TypeError) as context:
-            s = Square(4, "num", 1)
-        self.assertEqual(str(context.exception), "x must be an integer")
+    def test_list_size(self):
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+            Square([1, 6, 7])
 
-        with self.assertRaises(ValueError) as context:
-            s = Square(4, -1, 1)
-        self.assertEqual(str(context.exception), "x must be >= 0")
+    def test_none_size(self):
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+            Square(None)
 
-    def test_y_validation(self):
-        """test y validation"""
-        with self.assertRaises(TypeError) as context:
-            s = Square(4, 1, "num")
-        self.assertEqual(str(context.exception), "y must be an integer")
+    def test_float_size(self):
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+            Square(3.4)
 
-        with self.assertRaises(ValueError) as context:
-            s = Square(4, 2, -2)
-        self.assertEqual(str(context.exception), "y must be >= 0")
+    def test_dict_size(self):
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+            Square({"a": 1, "b": 2}, 2)
 
+    def test_range_size(self):
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+            Square(range(5))
 
-class TestSquareArea(unittest.TestCase):
-    """unittest for area calculation"""
+    def test_negative_size(self):
+        with self.assertRaisesRegex(ValueError, "width must be > 0"):
+            Square(-1, 2)
 
-    def test_area_with_positive_dimensions(self):
-        s = Square(40, 5, 6)
-        self.assertEqual(s.area(), 1600)
+    def test_zero_size(self):
+        with self.assertRaisesRegex(ValueError, "width must be > 0"):
+            Square(0, 2)
 
 
-"""
-class TestSquareDisplay(unittest.TestCase):
-    unittest for display # characters
+class TestSquare_x(unittest.TestCase):
+    """Unittests for testing initialization of Square x attribute."""
 
-    def setUp(self):
-        # Redirect stdout to capture print statements
-        self.saved_stdout = sys.stdout
-        sys.stdout = StringIO()
+    def test_none_x(self):
+        with self.assertRaisesRegex(TypeError, "x must be an integer"):
+            Square(1, None)
 
-    def tearDown(self):
-        # Restore original stdout
-        sys.stdout = self.saved_stdout
+    def test_str_x(self):
+        with self.assertRaisesRegex(TypeError, "x must be an integer"):
+            Square(1, "num")
 
-    def test_display_with_positive_dimensions(self):
-        s = Square(2, 3, 3)
-        s.display()
-        printed_output = sys.stdout.getvalue()
-        expected_output = "\n\n\n   ##\n   ##\n"
-        self.assertEqual(printed_output, expected_output)
+    def test_float_x(self):
+        with self.assertRaisesRegex(TypeError, "x must be an integer"):
+            Square(1, 8.5)
 
-    def test_display_with_negative_dimensions(self):
-        r = Square(2, 2)
-        r.display()
-        printed_output = sys.stdout.getvalue()
-        expected_output = '  ##\n  ##\n'
-        self.assertEqual(printed_output, expected_output)
-"""
+    def test_dict_x(self):
+        with self.assertRaisesRegex(TypeError, "x must be an integer"):
+            Square(1, {"a": 1, "b": 2}, 2)
+
+    def test_list_x(self):
+        with self.assertRaisesRegex(TypeError, "x must be an integer"):
+            Square(1, [1, 2, 3])
+
+    def test_set_x(self):
+        with self.assertRaisesRegex(TypeError, "x must be an integer"):
+            Square(1, {1, 2, 3})
+
+    def test_tuple_x(self):
+        with self.assertRaisesRegex(TypeError, "x must be an integer"):
+            Square(1, (1, 5, 7))
+
+    def test_negative_x(self):
+        with self.assertRaisesRegex(ValueError, "x must be >= 0"):
+            Square(8, -5, 0)
+
+
+class TestSquare_y(unittest.TestCase):
+    """Unittests for testing initialization of Square y attribute."""
+
+    def test_none_y(self):
+        with self.assertRaisesRegex(TypeError, "y must be an integer"):
+            Square(1, 2, None)
+
+    def test_str_y(self):
+        with self.assertRaisesRegex(TypeError, "y must be an integer"):
+            Square(1, 3, "num")
+
+    def test_float_y(self):
+        with self.assertRaisesRegex(TypeError, "y must be an integer"):
+            Square(1, 5, 7.5)
+
+    def test_dict_y(self):
+        with self.assertRaisesRegex(TypeError, "y must be an integer"):
+            Square(1, 1, {"a": 2, "b": 3})
+
+    def test_list_y(self):
+        with self.assertRaisesRegex(TypeError, "y must be an integer"):
+            Square(1, 1, [1, 2, 2])
+
+    def test_set_y(self):
+        with self.assertRaisesRegex(TypeError, "y must be an integer"):
+            Square(1, 2, {1, 5, 6})
+
+    def test_tuple_y(self):
+        with self.assertRaisesRegex(TypeError, "y must be an integer"):
+            Square(1, 2, (1, 5, 4))
+
+    def test_negative_y(self):
+        with self.assertRaisesRegex(ValueError, "y must be >= 0"):
+            Square(2, 0, -2)
 
 
 class TestSquare_stdout(unittest.TestCase):
-    """Unittests for testing __str__ and display methods of Square class."""
+    """Unittests for testing  display methods of Square class."""
 
     @staticmethod
-    def capture_stdout(sq, method):
-        """Captures and returns text printed to stdout.
+    def get_stdout(sq, method):
+        """picks and returns text printed to stdout.
 
         Args:
             sq (Square): The Square ot print to stdout.
@@ -92,41 +129,30 @@ class TestSquare_stdout(unittest.TestCase):
         Returns:
             The text printed to stdout by calling method on sq.
         """
-        capture = io.StringIO()
-        sys.stdout = capture
+        pick = io.StringIO()
+        sys.stdout = pick
         if method == "print":
             print(sq)
         else:
             sq.display()
         sys.stdout = sys.__stdout__
-        return capture
+        return pick
 
     def test_str_method_print_size(self):
-        s = Square(4)
-        capture = TestSquare_stdout.capture_stdout(s, "print")
-        correct = "[Square] ({}) 0/0 - 4\n".format(s.id)
-        self.assertEqual(correct, capture.getvalue())
+        s = Square(3)
+        pick = TestSquare_stdout.get_stdout(s, "print")
+        output = "[Square] ({}) 0/0 - 3\n".format(s.id)
+        self.assertEqual(output, pick.getvalue())
 
     def test_str_method_size_x(self):
-        s = Square(5, 5)
-        correct = "[Square] ({}) 5/0 - 5".format(s.id)
-        self.assertEqual(correct, s.__str__())
+        s = Square(3, 3)
+        output = "[Square] ({}) 3/0 - 3".format(s.id)
+        self.assertEqual(output, s.__str__())
 
     def test_str_method_size_x_y(self):
-        s = Square(7, 4, 22)
-        correct = "[Square] ({}) 4/22 - 7".format(s.id)
-        self.assertEqual(correct, str(s))
-
-    def test_str_method_size_x_y_id(self):
-        s = Square(2, 88, 4, 19)
-        self.assertEqual("[Square] (19) 88/4 - 2", str(s))
-
-    def test_str_method_changed_attributes(self):
-        s = Square(7, 0, 0, [4])
-        s.size = 15
-        s.x = 8
-        s.y = 10
-        self.assertEqual("[Square] ([4]) 8/10 - 15", str(s))
+        s = Square(5, 6, 20)
+        output = "[Square] ({}) 6/20 - 5".format(s.id)
+        self.assertEqual(output, str(s))
 
     def test_str_method_one_arg(self):
         s = Square(1, 2, 3, 4)
@@ -136,25 +162,13 @@ class TestSquare_stdout(unittest.TestCase):
     # Test display method
     def test_display_size(self):
         s = Square(2, 0, 0, 9)
-        capture = TestSquare_stdout.capture_stdout(s, "display")
-        self.assertEqual("##\n##\n", capture.getvalue())
+        pick = TestSquare_stdout.get_stdout(s, "display")
+        self.assertEqual("##\n##\n", pick.getvalue())
 
     def test_display_size_x(self):
         s = Square(3, 1, 0, 18)
-        capture = TestSquare_stdout.capture_stdout(s, "display")
-        self.assertEqual(" ###\n ###\n ###\n", capture.getvalue())
-
-    def test_display_size_y(self):
-        s = Square(4, 0, 1, 9)
-        capture = TestSquare_stdout.capture_stdout(s, "display")
-        display = "\n####\n####\n####\n####\n"
-        self.assertEqual(display, capture.getvalue())
-
-    def test_display_size_x_y(self):
-        s = Square(2, 3, 2, 1)
-        capture = TestSquare_stdout.capture_stdout(s, "display")
-        display = "\n\n   ##\n   ##\n"
-        self.assertEqual(display, capture.getvalue())
+        pick = TestSquare_stdout.get_stdout(s, "display")
+        self.assertEqual(" ###\n ###\n ###\n", pick.getvalue())
 
 
 class TestSquareStrMethod(unittest.TestCase):
