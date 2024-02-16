@@ -5,21 +5,22 @@ from models.base import Base
 
 
 class Rectangle(Base):
-    """Rectangle class that inherits Base class"""
+    """Rectangle class that inherits Base class.
+
+    Attributes:
+        width (int): The width of the rectangle.
+        height (int): The height of the rectangle.
+        x (int): The x-coordinate of the rectangle.
+        y (int): The y-coordinate of the rectangle.
+        id (int): The identity of the rectangle.
+
+    Raises:
+        TypeError: If width, height, x, or y is not an int.
+        ValueError: If width, height, x, or y is less than 0.
+    """
+
     def __init__(self, width, height, x=0, y=0, id=None):
-        """Constructor class
-        Args:
-            width (int): The width.
-            height (int): The height .
-            x (int): The x coordinate.
-            y (int): The y coordinate.
-            id (int): The new Rectangle identity.
-        Raises:
-            TypeError: If either width or height is not an int.
-            ValueError: If either  width or height <= 0.
-            TypeError: If either  x or y is not an int.
-            ValueError: If either x or y < 0.
-        """
+        """Constructor method for Rectangle class."""
         super().__init__(id)
         self.width = width
         self.height = height
@@ -28,18 +29,12 @@ class Rectangle(Base):
 
     @property
     def width(self):
-        """Getter method for width"""
+        """Getter method for width."""
         return self.__width
 
     @width.setter
     def width(self, value):
-        """Setter method for width
-        Args:
-            width: parameter
-        Raises:
-            TypeError: if width not int
-            ValueError: if width less than 0
-        """
+        """Setter method for width."""
         if type(value) != int:
             raise TypeError("width must be an integer")
         if value <= 0:
@@ -48,18 +43,12 @@ class Rectangle(Base):
 
     @property
     def height(self):
-        """Getter method for height"""
+        """Getter method for height."""
         return self.__height
 
     @height.setter
     def height(self, value):
-        """Setter method for height
-        Args:
-            height: parameter
-        Raises:
-            TypeError: if height not int
-            ValueError: if height less than 0
-        """
+        """Setter method for height."""
         if type(value) != int:
             raise TypeError("height must be an integer")
         if value <= 0:
@@ -68,19 +57,12 @@ class Rectangle(Base):
 
     @property
     def x(self):
-        """Getter method for x"""
+        """Getter method for x."""
         return self.__x
 
     @x.setter
     def x(self, value):
-        """Setter method for x
-        Args:
-            x: parameter
-        Raises:
-            TypeError: if x not int
-            ValueError: if x less than 0
-        """
-
+        """Setter method for x."""
         if type(value) != int:
             raise TypeError("x must be an integer")
         if value < 0:
@@ -89,18 +71,12 @@ class Rectangle(Base):
 
     @property
     def y(self):
-        """Getter method for y"""
+        """Getter method for y."""
         return self.__y
 
     @y.setter
     def y(self, value):
-        """Setter method for y
-        Args:
-            y: parameter
-        Raises:
-            TypeError: if y not int
-            ValueError: if y less than 0
-        """
+        """Setter method for y."""
         if type(value) != int:
             raise TypeError("y must be an integer")
         if value < 0:
@@ -127,13 +103,13 @@ class Rectangle(Base):
         """Update the Rectangle.
 
         Args:
-        *args (ints): New attribute values.
-            - 1st argument represents id attribute
-            - 2nd argument represents width attribute
-            - 3rd argument represents height attribute
-            - 4th argument represents x attribute
-            - 5th argument represents y attribute
-        **kwargs (dict): New key/value pairs of attributes.
+            *args (ints): New attribute values.
+                - 1st argument represents id attribute
+                - 2nd argument represents width attribute
+                - 3rd argument represents height attribute
+                - 4th argument represents x attribute
+                - 5th argument represents y attribute
+            **kwargs (dict): New key/value pairs of attributes.
         """
         if args and len(args) != 0:
             a = 0
