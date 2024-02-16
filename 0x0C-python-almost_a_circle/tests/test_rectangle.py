@@ -136,9 +136,9 @@ class TestRectangleUpdateMethod(unittest.TestCase):
         self.assertEqual("[Rectangle] (10) 10/10 - 10/10", str(r))
 
     def test_update_args_zero(self):
-        r = Rectangle(1, 1, 1, 1, 1)
+        r = Rectangle(10, 10, 10, 10, 10)
         r.update()
-        self.assertEqual("[Rectangle] (1) 1/11 - 1/1", str(r))
+        self.assertEqual("[Rectangle] (10) 10/10 - 10/10", str(r))
 
     def test_update_args_invalid_width_type(self):
         r = Rectangle(7, 7, 7, 7, 7)
