@@ -141,7 +141,6 @@ class Base:
         except IOError:
             return []
 
-
     @staticmethod
     def draw(list_rectangles, list_squares):
         """Draw Rectangles and Squares using the turtle module.
