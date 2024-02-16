@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Defines a rectangle class that inherits Base class."""
 from models.base import Base
+"""import base class"""
 
 
 class Rectangle(Base):
@@ -176,4 +177,4 @@ class Rectangle(Base):
             'height': self.height,
             'x': self.x,
             'y': self.y
-        }
+            }
