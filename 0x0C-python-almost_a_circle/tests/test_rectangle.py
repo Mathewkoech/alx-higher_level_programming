@@ -152,6 +152,11 @@ class TestRectangleUpdateMethod(unittest.TestCase):
         self.assertEqual(r.x, 5)
         self.assertEqual(r.y, 6)
 
+    def test_update_kwargs_wrong_keys(self):
+        r = Rectangle(10, 10, 10, 10, 10)
+        r.update(a=5, b=10)
+        self.assertEqual("[Rectangle] (10) 10/10 - 10/10", str(r))
+
 
 class test_to_dictionary(unittest.TestCase):
     """Unittests for testing to_dictionary method of the Rectangle class."""
