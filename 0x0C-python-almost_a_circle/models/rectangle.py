@@ -1,7 +1,7 @@
 #!/usr/bin/python3
+
 """Defines a rectangle class that inherits Base class."""
 from models.base import Base
-"""import base class"""
 
 
 class Rectangle(Base):
@@ -170,11 +170,11 @@ class Rectangle(Base):
                     self.y = v
 
     def to_dictionary(self):
-        """Returns the dictionary representation of a Rectangle."""
+        """Return the dictionary representation of a Rectangle."""
         return {
-            'id': self.id,
-            'width': self.width,
-            'height': self.height,
-            'x': self.x,
-            'y': self.y
-            }
+            "id": self.id,
+            "width": self.width,
+            "height": self.height,
+            "x": self.x,
+            "y": self.y
+        }
