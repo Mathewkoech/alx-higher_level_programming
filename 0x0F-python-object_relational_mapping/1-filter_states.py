@@ -22,7 +22,8 @@ if __name__ == '__main__':
     db_cursor = db_connect.cursor()
 
     # SQL query to select all states
-    db_cursor.execute("SELECT * FROM states WHERE name LIKE BINARY 'N%' ORDER BY states.id ASC")
+    db_cursor.execute("SELECT * FROM states WHERE name LIKE",
+                      "BINARY 'N%' ORDER BY states.id ASC")
 
     # Fetch all rows selected by the query
     states_selected = db_cursor.fetchall()
