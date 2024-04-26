@@ -1,10 +1,11 @@
 #!/usr/bin/python3
 """
-script that takes in a letter and sends a POST request to 
+script that takes in a letter and sends a POST request to
 http://0.0.0.0:5000/search_user with the letter as a parameter.
 """
 import requests
 import sys
+
 
 if __name__ == "__main__":
     if len(sys.argv) == 2:
@@ -20,6 +21,5 @@ if __name__ == "__main__":
             print("{[]} {}".format(json_data['id']. json_data['name']))
         else:
             print("Not a valid JSON")
-    except:
+    except ValueError:
         print("No result")
-
