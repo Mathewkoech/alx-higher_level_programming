@@ -12,7 +12,7 @@ import requests
 if __name__ == "__main__":
     # Extract the URL and email from command-line arguments
     url = sys.argv[1]
-    email_address = {"email":sys.argv[2]}
+    email_address = {"email": sys.argv[2]}
     request = requests.post(url, data=email_address)
     response = request.text
     print(response)
